@@ -1,0 +1,12 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+        <h1>listings</h1>
+        <p>Mes {{ titles|length }} titres préférés sont :</p>
+        <!-- TODO : liste des titres -->
+        <ul>
+            {% for title in titles %}
+                <li>{{ title.name|lower }}</li>
+            {% endfor %}
+        </ul>
+{% endblock %}    
