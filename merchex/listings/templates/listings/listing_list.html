@@ -2,11 +2,17 @@
 
 {% block content %}
         <h1>listings</h1>
+
+        <a href="{% url 'listing-create' %}">Créer un nouveau listing</a>
+
+        <!-- 
         <p>Mes {{ titles|length }} titres préférés sont :</p>
+        -->
         <!-- TODO : liste des titres -->
         <ul>
             {% for title in titles %}
-                <li>{{ title.name|lower }}</li>
+                <!-- <li>{{ title.name|lower }}</li> -->
+                <li><a href="{% url 'listing-detail' title.id %}">{{ title.name }}</a></li>
             {% endfor %}
         </ul>
 {% endblock %}    

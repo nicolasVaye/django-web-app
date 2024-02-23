@@ -1,0 +1,16 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+        <h1>contact us</h1>
+
+        <ul>
+                <li>name : {{ contactusdatas.name }}</li>
+                <li>email : {{ contactusdatas.email }}</li>
+        </ul>
+
+        <p>Message : {{ contactusdatas.message }}</p>
+
+
+
+        <p>Email envoyé.</p>
+{% endblock %}
