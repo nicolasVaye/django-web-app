@@ -18,6 +18,21 @@ def band_detail(request, band_id):
     return render(request, 'listings/band_detail.html', {'band': band})
 
 
+def band_update(request, band_id):
+    band = get_object_or_404(Band, pk=band_id)
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            # mettre à jour le groupe existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du groupe que nous venons de mettre à jour
+            return redirect('band-detail', band.id)
+    else:
+        form = BandForm(instance=band)
+
+    return render(request, 'listings/band_update.html', {'form': form})
+
+
 def band_create(request):
     if request.method == 'POST':
         form = BandForm(request.POST)
