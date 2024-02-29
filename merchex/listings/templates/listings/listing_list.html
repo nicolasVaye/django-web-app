@@ -12,7 +12,10 @@
         <ul>
             {% for title in titles %}
                 <!-- <li>{{ title.name|lower }}</li> -->
-                <li><a href="{% url 'listing-detail' title.id %}">{{ title.name }}</a></li>
+                <li><a href="{% url 'listing-detail' title.id %}">{{ title.name }}</a>
+                    - <a href="{% url 'listing-update' title.id %}">[modifier]</a>
+                    - <a href="{% url 'listing-delete' title.id %}">[supprimer]</a>
+                </li>
             {% endfor %}
         </ul>
 {% endblock %}    

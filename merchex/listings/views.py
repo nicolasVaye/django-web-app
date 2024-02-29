@@ -51,9 +51,21 @@ def band_create(request):
             {'form': form})
 
 
+def band_delete(request, band_id):
+    band = get_object_or_404(Band, pk=band_id)
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        band.delete()
+        # rediriger vers la liste des groupes
+        return redirect('band-list')
+    
+    return render(request, 'listings/band_delete.html', {'band': band})
+
+
 
 def about(request):
     return render(request, 'listings/about.html')
+
 
 
 def listing_list(request):
@@ -84,6 +96,30 @@ def listing_create(request):
             {'form': form})
 
 
+def listing_update(request, listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+    if request.method == 'POST':
+        form = ListingForm(request.POST, instance=listing)
+        if form.is_valid():
+            # mettre à jour le listing existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du listing que nous venons de mettre à jour
+            return redirect('listing-detail', listing.id)
+    else:
+        form = ListingForm(instance=listing)
+
+    return render(request, 'listings/listing_update.html', {'form': form})
+
+
+def listing_delete(request, listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+    if request.method == 'POST':
+        # supprimer le listing de la base de données
+        listing.delete()
+        # rediriger vers la liste des listings
+        return redirect('listing-list')
+    
+    return render(request, 'listings/listing_delete.html', {'listing': listing})
 
 
 
